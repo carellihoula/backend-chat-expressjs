@@ -7,10 +7,10 @@ cron.schedule("0 * * * *", async () => {
 
   try {
     const result = await Message.deleteMany({ createdAt: { $lt: cutoff } });
-    console.log(`Messages supprimés : ${result.deletedCount}`);
+    console.log(`Deleted messages : ${result.deletedCount}`);
   } catch (error) {
-    console.error("Erreur lors de la suppression des messages :", error);
+    console.error("Error deleting messages :", error);
   }
 });
 
-console.log("La tâche cron pour supprimer les messages a été configurée.");
+console.log("The cron job for deleting messages has been configured.");
