@@ -20,6 +20,7 @@ app.use(
   })
 );
 
+
 // Middleware pour parser le JSON
 app.use(express.json());
 
@@ -31,11 +32,12 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
+
 // Créer le serveur HTTP
 const server = http.createServer(app);
-
 // Initialiser Socket.IO
 socketIO(server);
+
 
 // Importer les tâches planifiées
 require("./scheduledTasks");

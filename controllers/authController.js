@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
   try {
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ message: "Utilisateur déjà enregistré" });
+      return res.status(400).json({ message: "User already registered with this email" });
     }
     user = new User({ username, email, password });
     await user.save();
@@ -33,7 +33,7 @@ exports.register = async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .json({ message: "Erreur lors de l'inscription", error: error.message });
+      .json({ message: "Error during registration", error: error.message });
   }
 };
 
@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
     if (!user || !(await user.matchPassword(password))) {
       return res
         .status(401)
-        .json({ message: "Email ou mot de passe incorrect" });
+        .json({ message: "Wrong email or password" });
     }
     const token = generateToken(user._id);
     res.status(200).json({
@@ -65,7 +65,7 @@ exports.login = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Erreur lors de la connexion", error: error.message });
+      .json({ message: "Connection error", error: error.message });
   }
 };
 
