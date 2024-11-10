@@ -97,19 +97,19 @@ exports.updateStatus = async (req, res) => {
   const { status } = req.body;
   const validStatuses = ["online", "offline", "busy", "away"];
   if (!validStatuses.includes(status)) {
-    return res.status(400).json({ message: "Statut invalide" });
+    return res.status(400).json({ message: "Statut not valid" });
   }
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
-      return res.status(404).json({ message: "Utilisateur non trouvé" });
+      return res.status(404).json({ message: "User Not Found" });
     }
     user.status = status;
     await user.save();
-    res.status(200).json({ message: "Statut mis à jour", status: user.status });
+    res.status(200).json({ message: "Statut is updated", status: user.status });
   } catch (error) {
     res.status(500).json({
-      message: "Erreur lors de la mise à jour du statut",
+      message: "Error during status update",
       error: error.message,
     });
   }

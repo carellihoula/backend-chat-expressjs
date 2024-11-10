@@ -14,7 +14,7 @@ app.use("/public", express.static("public"));
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Frontend React
+    origin: "http://localhost:5174", // Frontend React
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
